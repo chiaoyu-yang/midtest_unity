@@ -10,39 +10,26 @@ public class guessNumber : MonoBehaviour
     public Button inputButton;
     public Button resultButton;
     
-
     public Text[] resultTexts = new Text[8];
 
-    // 靜態變數保存密碼，只生成一次
-    private static int[] password;
+    private int[] password = new int[4];
     private int attemptCount = 0;
     private bool gameOver = false;
 
     void Start()
     {
-        // 只生成一次密碼
-        if (password == null)
-        {
-            GeneratePassword();
-        }
-
-        // 確保只綁定一次點擊事件
-        inputButton.onClick.RemoveAllListeners();  
-        inputButton.onClick.AddListener(OnGuess);
-
+        GeneratePassword();
         resultButton.gameObject.SetActive(false);
     }
 
     void GeneratePassword()
     {
-        password = new int[4];  // 初始化密碼
         System.Random rand = new System.Random();
-        int ans;
         bool renew;
 
         do
         {
-            ans = rand.Next(1234, 9877);
+            int ans = rand.Next(1234, 9877);
             password[0] = ans % 10;
             password[1] = (ans / 10) % 10;
             password[2] = (ans / 100) % 10;
@@ -51,9 +38,15 @@ public class guessNumber : MonoBehaviour
             // 檢查數字是否重複
             renew = false;
             for (int i = 0; i < 3; i++)
+            {
                 for (int j = i + 1; j < 4; j++)
+                {
                     if (password[i] == password[j])
+                    {
                         renew = true;
+                    }
+                }
+            }
 
         } while (renew);
 
@@ -68,12 +61,10 @@ public class guessNumber : MonoBehaviour
 
         string input = inputField.text;
 
-        inputButton.interactable = false;  // 禁用按鈕以避免重複觸發
 
         if (input.Length != 4 || !int.TryParse(input, out int guessNumber))
         {
             inputField.text = "Input again";
-            inputButton.interactable = true;  // 若輸入錯誤，重新啟用按鈕
             return;
         }
 
@@ -85,26 +76,30 @@ public class guessNumber : MonoBehaviour
             guessNumber / 1000
         };
 
+        // 檢查四位數是否不重複
         for (int i = 0; i < 3; i++)
+        {
             for (int j = i + 1; j < 4; j++)
+            {
                 if (guess[i] == guess[j])
                 {
                     inputField.text = "Input again";
-                    inputButton.interactable = true;  // 若輸入有誤，重新啟用按鈕
                     return;
                 }
+            }
+        }
 
         int A = 0, B = 0;
 
         for (int i = 0; i < 4; i++)
         {
-            for (int j = 0; j < 4; j++)
+            if (password[i] == guess[i])
             {
-                if (password[i] == guess[j])
-                {
-                    if (i == j) A++;
-                    else B++;
-                }
+                A++;
+            }
+            else if (System.Array.Exists(password, element => element == guess[i]))
+            {
+                B++;
             }
         }
 
@@ -115,12 +110,12 @@ public class guessNumber : MonoBehaviour
         }
 
         attemptCount++;
-        inputButton.interactable = true;  // 成功後重新啟用按鈕
 
         if (A == 4 || attemptCount >= 8)
         {
             gameOver = true;
             resultButton.gameObject.SetActive(true);
+            global.guessnumber = attemptCount.ToString();
         }
     }
 

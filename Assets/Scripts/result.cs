@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class result : MonoBehaviour
 {
-    public GameObject usernameText, usernumberText, guessnumberText, quitButton;
+    public GameObject gameNameText, usernameText, usernumberText, guessnumberText, quitButton;
+    
     void Start()
     {
+        gameNameText.GetComponent<Text>().text = global.gameName;
         usernameText.GetComponent<Text>().text = global.username;
         usernumberText.GetComponent<Text>().text = global.usernumber;
         guessnumberText.GetComponent<Text>().text = "總共猜了" + global.guessnumber + "次";
