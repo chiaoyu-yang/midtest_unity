@@ -34,13 +34,16 @@ public class SwitchScene : MonoBehaviour
     public void click_next2gameone_button()
     {
         SceneManager.LoadScene("GuessNumber");
-        global.gameName = "猜數字";
     }
 
     public void click_next2gametwo_button()
     {
         SceneManager.LoadScene("game2");
-        global.gameName = "終極密碼";
+    }
+
+    public void click_next2gamethree_button()
+    {
+        SceneManager.LoadScene("game3");
     }
 
     public void click_next2result()
