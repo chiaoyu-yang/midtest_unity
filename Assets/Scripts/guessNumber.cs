@@ -9,6 +9,7 @@ public class guessNumber : MonoBehaviour
     public InputField inputField;
     public Button inputButton;
     public Button resultButton;
+    
 
     public Text[] resultTexts = new Text[8];
 
