@@ -5,5 +5,5 @@ using UnityEngine.UI;
 
 public class global : MonoBehaviour
 {
-    public static string username, usernumber, guessnumber;
+    public static string username, usernumber, guessnumber, gameName;
 }
