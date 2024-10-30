@@ -26,7 +26,7 @@ public class game2 : MonoBehaviour
     public void click_enterButton()
     {
         // 如果guess不是數字，就不執行
-        if (!int.TryParse(inputField.GetComponent<InputField>().text, out int guess))
+        if (!int.TryParse(inputField.GetComponent<InputField>().text, out int guess) || ResultButton.activeSelf)
         {
             return;
         }
