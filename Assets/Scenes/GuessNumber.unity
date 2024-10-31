@@ -2340,7 +2340,7 @@ GameObject:
   - component: {fileID: 1916308654}
   - component: {fileID: 1916308656}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Script
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

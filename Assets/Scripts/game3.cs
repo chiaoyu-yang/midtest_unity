@@ -55,6 +55,7 @@ public class game3 : MonoBehaviour
         // 檢查輸入是否為五個英文字母
         if (guess.Length != 5 || !System.Text.RegularExpressions.Regex.IsMatch(guess, @"^[a-zA-Z]+$") || attemptCount >= 5)
         {
+            inputField.GetComponent<InputField>().text = "格式錯誤，請重新輸入";
             return;
         }
 
