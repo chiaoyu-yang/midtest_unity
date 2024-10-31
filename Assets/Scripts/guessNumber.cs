@@ -49,14 +49,10 @@ public class guessNumber : MonoBehaviour
             }
 
         } while (renew);
-
-        Debug.Log($"Generated Password: {password[3]}{password[2]}{password[1]}{password[0]}");
     }
 
     public void OnGuess()
     {
-        Debug.Log($"OnGuess called - attemptCount: {attemptCount}");
-        
         if (gameOver || attemptCount >= 8) return;
 
         string input = inputField.text;
@@ -105,7 +101,6 @@ public class guessNumber : MonoBehaviour
 
         if (attemptCount < resultTexts.Length)
         {
-            Debug.Log($"Updating Text {attemptCount}: {resultTexts[attemptCount].name}");
             resultTexts[attemptCount].text = $"{input} → {A}A{B}B";
         }
 
