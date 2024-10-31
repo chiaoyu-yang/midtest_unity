@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Diagnostics;
 
 public class game3 : MonoBehaviour
 {
-    public GameObject panel1, panel2, panel3, panel4, panel5, inputField, enterButton, hintButton, hintPanel, networkPanel;
+    public GameObject panel1, panel2, panel3, panel4, panel5, inputField, enterButton, hintButton, hintPanel, ResultButton;
 
     public string answer, hintName;
 
     public int attemptCount=0;
 
+    private Stopwatch stopwatch;
 
     void Start()
     {
+        stopwatch = new Stopwatch();
+        stopwatch.Start();
+
         int random_number = Random.Range(0, 3);
         switch (random_number)
         {
@@ -38,19 +43,13 @@ public class game3 : MonoBehaviour
         panel3.SetActive(false);
         panel4.SetActive(false);
         panel5.SetActive(false);  
-        hintButton.SetActive(false); 
+        hintButton.SetActive(false);
+        ResultButton.SetActive(false);
     }
 
     // 當按下enterButton時，先檢查inputField是不是五個英文字母，再檢查是否正確
     public void click_enterButton()
     {
-        // 網路偵測
-        if (!WebRequestTest())
-        {
-            networkPanel.SetActive(true);
-            return;
-        }
-
         string guess = inputField.GetComponent<InputField>().text;
 
         // 檢查輸入是否為五個英文字母
@@ -79,19 +78,43 @@ public class game3 : MonoBehaviour
 
         if (guess.ToLower() == answer)
         {
-            Debug.Log("恭喜你猜對了！");
+            UnityEngine.Debug.Log("恭喜你猜對了！");
+            StopTimer();
+            double totalSeconds = stopwatch.Elapsed.TotalSeconds;
+            string timeString = totalSeconds.ToString("F0");
+            global.gameTime = timeString;
+            global.gemeResult = "成功";
+            global.guessnumber = attemptCount.ToString();
+            global.gameAns = answer;
+            ResultButton.SetActive(true);
             attemptCount = 5;
         }
         else
         {
             attemptCount++;
             ShowNextPanel(attemptCount);
+
+            if (attemptCount >= 5)
+            {
+                StopTimer();
+                double totalSeconds = stopwatch.Elapsed.TotalSeconds;
+                global.gameTime = totalSeconds.ToString("F0");
+                global.gemeResult = "失敗";
+                global.guessnumber = attemptCount.ToString();
+                global.gameAns = answer;
+                ResultButton.SetActive(true);
+            }
         }
 
         if (attemptCount == 3)
         {
             hintButton.SetActive(true);
         }
+    }
+
+    private void StopTimer()
+    {
+        stopwatch.Stop();
     }
 
     // 清空輸入框
@@ -146,27 +169,6 @@ public class game3 : MonoBehaviour
     public void click_closeHintButton()
     {
         hintPanel.SetActive(false);
-    }
-
-    public void click_closeNetworkPanel()
-    {
-        networkPanel.SetActive(false);
-    }
-
-    // 網路偵測
-    public static bool WebRequestTest()
-    {
-        string url = "http://www.google.com";
-        try
-        {
-            System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(url);
-            System.Net.HttpWebResponse response = (System.Net.HttpWebResponse)request.GetResponse();
-        }
-        catch(System.Net.WebException)
-        {
-            return false;
-        }
-        return true;
     }
 
 }
