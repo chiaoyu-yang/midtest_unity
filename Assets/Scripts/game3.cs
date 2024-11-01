@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 public class game3 : MonoBehaviour
 {
-    public GameObject panel1, panel2, panel3, panel4, panel5, inputField, enterButton, hintButton, hintPanel, ResultButton;
+    public GameObject panel1, panel2, panel3, panel4, panel5, inputField, enterButton, hintButton, hintPanel, networkPanel, ResultButton;
 
     public string answer, hintName;
 
@@ -50,6 +50,13 @@ public class game3 : MonoBehaviour
     // 當按下enterButton時，先檢查inputField是不是五個英文字母，再檢查是否正確
     public void click_enterButton()
     {
+        // 網路偵測
+        if (!WebRequestTest())
+        {
+            networkPanel.SetActive(true);
+            return;
+        }
+
         string guess = inputField.GetComponent<InputField>().text;
 
         // 檢查輸入是否為五個英文字母
@@ -166,10 +173,32 @@ public class game3 : MonoBehaviour
         // hintPanel 裡面的 panel 裡面的 text
         hintPanel.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = hintName;
     }
+    
 
     public void click_closeHintButton()
     {
         hintPanel.SetActive(false);
+    }
+
+    // 網路偵測
+    public static bool WebRequestTest()
+    {
+        string url = "http://www.google.com";
+        try
+        {
+            System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(url);
+            System.Net.HttpWebResponse response = (System.Net.HttpWebResponse)request.GetResponse();
+        }
+        catch(System.Net.WebException)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public void click_closeNetworkPanel()
+    {
+        networkPanel.SetActive(false);
     }
 
 }

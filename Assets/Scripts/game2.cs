@@ -22,15 +22,13 @@ public class game2 : MonoBehaviour
         ResultButton.SetActive(false);
     }
 
-    // 迴圈，只要還沒猜中就繼續
     public void click_enterButton()
     {
         // 如果guess不是數字，就不執行
-        if (!int.TryParse(inputField.GetComponent<InputField>().text, out int guess) || ResultButton.activeSelf)
+        if (!int.TryParse(inputField.GetComponent<InputField>().text, out int guess))
         {
             return;
         }
-
 
         if(guess == answer)
         {
@@ -38,6 +36,8 @@ public class game2 : MonoBehaviour
             responseText.GetComponent<Text>().text = "Correct!!";
             ResultButton.SetActive(true);
             global.guessnumber = guessNumber.ToString();
+            enterButton.GetComponent<Button>().interactable = false;
+            
         }
         else if (guess > min && guess < max)
         {
