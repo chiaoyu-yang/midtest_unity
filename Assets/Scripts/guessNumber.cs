@@ -29,7 +29,7 @@ public class guessNumber : MonoBehaviour
 
         do
         {
-            int ans = rand.Next(1234, 9877);
+            int ans = rand.Next(0123, 9877);
             password[0] = ans % 10;
             password[1] = (ans / 10) % 10;
             password[2] = (ans / 100) % 10;
