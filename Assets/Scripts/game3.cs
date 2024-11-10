@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 public class game3 : MonoBehaviour
 {
-    public GameObject panel1, panel2, panel3, panel4, panel5, inputField, enterButton, hintButton, hintPanel, networkPanel, ResultButton;
+    public GameObject panel1, panel2, panel3, panel4, panel5, inputField, enterButton, hintButton, hintPanel, networkPanel, ResultButton, question;
 
     public string answer, hintName;
 
@@ -45,18 +45,20 @@ public class game3 : MonoBehaviour
         panel5.SetActive(false);  
         hintButton.SetActive(false);
         ResultButton.SetActive(false);
+
+        // 網路偵測
+        if (!WebRequestTest())
+        {
+            networkPanel.SetActive(true);
+            transform.SetAsLastSibling();
+            return;
+        }
     }
 
     // 當按下enterButton時，先檢查inputField是不是五個英文字母，再檢查是否正確
     public void click_enterButton()
     {
-        // 網路偵測
-        if (!WebRequestTest())
-        {
-            networkPanel.SetActive(true);
-            return;
-        }
-
+        
         string guess = inputField.GetComponent<InputField>().text;
 
         // 檢查輸入是否為五個英文字母
@@ -86,6 +88,7 @@ public class game3 : MonoBehaviour
 
         if (guess.ToLower() == answer)
         {
+            attemptCount++;
             UnityEngine.Debug.Log("恭喜你猜對了！");
             StopTimer();
             double totalSeconds = stopwatch.Elapsed.TotalSeconds;
@@ -95,7 +98,7 @@ public class game3 : MonoBehaviour
             global.guessnumber = attemptCount.ToString();
             global.gameAns = answer;
             ResultButton.SetActive(true);
-            attemptCount = 5;
+            enterButton.GetComponent<Button>().interactable = false;
         }
         else
         {
@@ -169,14 +172,15 @@ public class game3 : MonoBehaviour
     public void click_hintButton()
     {
         hintPanel.SetActive(true);
+        transform.SetAsLastSibling();
         
         // hintPanel 裡面的 panel 裡面的 text
         hintPanel.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = hintName;
     }
     
-
     public void click_closeHintButton()
     {
+        transform.SetAsFirstSibling();
         hintPanel.SetActive(false);
     }
 
@@ -198,7 +202,19 @@ public class game3 : MonoBehaviour
 
     public void click_closeNetworkPanel()
     {
+        transform.SetAsFirstSibling();
         networkPanel.SetActive(false);
     }
 
+    public void open_question()
+    {
+        question.SetActive(true);
+        transform.SetAsLastSibling();
+    }
+    
+    public void close_question()
+    {
+        transform.SetAsFirstSibling();
+        question.SetActive(false);
+    }
 }

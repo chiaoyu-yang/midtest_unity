@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -993,7 +993,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Game 3\uFF1A\n  \u81EA\u884C\u5B9A\u7FA9"
+  m_Text: "Game 3\uFF1A\n  \u731C\u82F1\u6587\u55AE\u5B57\u904A\u6232"
 --- !u!222 &831484009
 CanvasRenderer:
   m_ObjectHideFlags: 0
