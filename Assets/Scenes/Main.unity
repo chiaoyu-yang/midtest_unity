@@ -703,6 +703,7 @@ GameObject:
   - component: {fileID: 1038966572}
   - component: {fileID: 1038966571}
   - component: {fileID: 1038966573}
+  - component: {fileID: 1038966574}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -749,6 +750,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0538e1669632eb94c93f4d61b1869f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1038966574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038966570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9747b497d962daa439543f732c8943d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputName: {fileID: 0}
 --- !u!1 &1337641305
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,7 +924,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1526394204}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1038966574}
+        m_TargetAssemblyTypeName: SwitchScene, Assembly-CSharp
+        m_MethodName: click_start_button
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1526394204
 MonoBehaviour:
   m_ObjectHideFlags: 0
