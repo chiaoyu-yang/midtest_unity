@@ -398,7 +398,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3bdcf854ec25f774b8a84cbe8af55060, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8c81bac334fa4894599d6dd9959f116e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -602,7 +602,7 @@ Transform:
   m_GameObject: {fileID: 1404282905}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -140, y: -232, z: 0}
+  m_LocalPosition: {x: -287, y: -232, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -666,13 +666,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1407362268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3b6b7829394033439b791883554a7db, type: 3}
+  m_Script: {fileID: 11500000, guid: edc593a43fe3efa49b63cd0f31dada33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   originalCard: {fileID: 1404282907}
   images:
-  - {fileID: 21300000, guid: 3bdcf854ec25f774b8a84cbe8af55060, type: 3}
-  - {fileID: 21300000, guid: acf96aa5fa7e1a44bbe41a1e340ac95a, type: 3}
+  - {fileID: 21300000, guid: 8c81bac334fa4894599d6dd9959f116e, type: 3}
+  - {fileID: 21300000, guid: 3a12147e36113874da00b8af6c634245, type: 3}
+  - {fileID: 21300000, guid: 9af03f0346f141849b9f2f3f47bd2bef, type: 3}
   scoreLabel: {fileID: 321755312}
   timerLabel: {fileID: 1727655448}
 --- !u!1 &1569738969
@@ -745,7 +746,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'easy
+  m_Text: 'normal
 
 '
 --- !u!222 &1569738972

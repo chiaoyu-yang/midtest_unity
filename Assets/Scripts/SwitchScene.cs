@@ -46,6 +46,21 @@ public class SwitchScene : MonoBehaviour
         SceneManager.LoadScene("Level");
     }
 
+    public void click_easy_button()
+    {
+        SceneManager.LoadScene("game-easy");
+    }
+
+    public void click_normal_button()
+    {
+        SceneManager.LoadScene("game-normal");
+    }
+
+    public void click_hard_button()
+    {
+        SceneManager.LoadScene("game-hard");
+    }
+
     public void click_back2main()
     {
         SceneManager.LoadScene("Main");
