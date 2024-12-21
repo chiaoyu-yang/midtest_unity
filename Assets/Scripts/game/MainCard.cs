@@ -7,7 +7,8 @@ public class MainCard : MonoBehaviour
 {
     private bool flipped = false; // 記錄卡片是否翻面
 
-    [SerializeField] private SceneController controller; // 管理場景的控制器
+    // [SerializeField] private SceneController controller;
+    [SerializeField] private CardGameController controller; // 基底控制器
     [SerializeField] private Button Card_Back; // 卡片背面按鈕
     [SerializeField] private Button Card_front; // 卡片正面按鈕
 
@@ -36,7 +37,7 @@ public class MainCard : MonoBehaviour
     private void Flip()
     {
         flipped = !flipped;
-        transform.DORotate(new Vector3(0, flipped ? 0f : 180f, 0), 0.25f);
+        transform.DORotate(new Vector3(0, flipped ? 0f : 180f, 0), 0.25f, RotateMode.FastBeyond360);
     }
 
     public void ChangeSprite(int id, Sprite image)
