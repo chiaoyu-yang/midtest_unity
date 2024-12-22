@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public abstract class CardGameController : MonoBehaviour
 {
@@ -135,9 +136,24 @@ public abstract class CardGameController : MonoBehaviour
         }
     }
 
+    
+
     private void StopTimer()
     {
         _isTimerRunning = false;
+        global.step = _score.ToString();
+        global.time = _timer.ToString("F2");
         Debug.Log("Game Over! Total Time: " + _timer.ToString("F2"));
+
+        SendToGoogle sendToGoogle = new SendToGoogle();
+        StartCoroutine(sendToGoogle.Post(global.username, global.level, global.step, global.time));
+
+        StartCoroutine(ShowResult());
+    }
+
+    private IEnumerator ShowResult()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("Result");
     }
 }

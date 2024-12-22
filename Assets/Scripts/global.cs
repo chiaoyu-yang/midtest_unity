@@ -5,5 +5,5 @@ using UnityEngine.UI;
 
 public class global : MonoBehaviour
 {
-    public static string username;
+    public static string username, level, step, time;
 }
