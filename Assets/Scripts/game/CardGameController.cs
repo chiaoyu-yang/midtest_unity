@@ -9,8 +9,8 @@ public abstract class CardGameController : MonoBehaviour
     public abstract int GridCols { get; }
     public abstract int[] Numbers { get; }
 
-    public const float OffsetX = 290f;
-    public const float OffsetY = 330f;
+    public const float OffsetX = 280f;
+    public const float OffsetY = 160f;
 
     [SerializeField] private MainCard originalCard; // 預製卡片
     [SerializeField] private Sprite[] images; // 圖片資源
